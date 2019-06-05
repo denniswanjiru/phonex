@@ -4,7 +4,7 @@ import Row from './Row';
 
 export default class App extends Component {
   state = {
-    amount: 0,
+    amount: null,
     numbers: [],
     error: null,
     asc: false
@@ -41,15 +41,7 @@ export default class App extends Component {
   }
 
   handleChange = e => {
-    const { amount } = this.state;
-
     this.setState({ amount: e.target.value });
-
-    if(amount < 1 || amount > 10000) {
-      this.setState({error: 'Amount must be between 1 - 10000'})
-    } else {
-      this.setState({ error: null })
-    }
   }
 
   handleSort = e => {
@@ -66,7 +58,9 @@ export default class App extends Component {
   }
 
   render() {
-    const { numbers, error } = this.state;
+    const { numbers, error, amount } = this.state;
+    const disable = amount > 10000 || amount < 1;
+    console.log(amount, disable)
 
     return (
       <div className="page">
@@ -81,9 +75,9 @@ export default class App extends Component {
                 onChange={this.handleChange}
                 className={error ? 'error-input' : ''}
                 />
-                {error && <div className="error">{error}</div>}
+                {disable && amount !== null && <div className="error">Amount must be between 1 - 10000</div>}
               </div>
-              <button type="submit" onClick={this.generateNumbers}>Generate</button>
+              <button type="submit" onClick={this.generateNumbers} disabled={disable}>Generate</button>
             </form>
           </div>
 
