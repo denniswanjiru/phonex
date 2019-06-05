@@ -84,8 +84,9 @@ export default class App extends Component {
           <p>Random Phone Number Generator App</p>
         </div>
         <div className="card">
-          <Row data={{ index: "Index", phone: 'Phone Numbers' }} onClick={this.handleSort}/>
-          {numbers.map((phone, idx) => <Row key={idx} data={{ index: idx + 1, phone }} />)}
+          <Row className data={{ index: "Index", phone: 'Phone Numbers' }} onClick={this.handleSort}/>
+          {numbers && numbers.map((phone, idx) => <Row key={idx} data={{ index: idx + 1, phone }} />)}
+          {numbers.length < 1 && <div className="centered">You haven't generated any phone numbers yet</div>}
         </div>
       </div>
     );

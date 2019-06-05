@@ -104,3 +104,15 @@ button[disabled]{
   color: #666666;
   cursor: not-allowed;
 }
+
+.sticky {
+  position: sticky;
+  top: 0;
+  background: #fff;
+}
+
+.centered {
+  height: 50%;
+  display: grid;
+  place-items: center;
+}
