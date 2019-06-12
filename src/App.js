@@ -60,7 +60,6 @@ export default class App extends Component {
   render() {
     const { numbers, error, amount } = this.state;
     const disable = amount > 10000 || amount < 1;
-    console.log(amount, disable)
 
     return (
       <div className="page">
