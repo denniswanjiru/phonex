@@ -1,9 +1,18 @@
+import { shallow } from 'enzyme';
 import React from 'react';
-import ReactDOM from 'react-dom';
 import App from './App';
+import Row from './Row'
 
-it('renders without crashing', () => {
-  const div = document.createElement('div');
-  ReactDOM.render(<App />, div);
-  ReactDOM.unmountComponentAtNode(div);
+describe('<App />', () => {
+  it('renders  <App /> components', () => {
+    const snap = shallow(<App />);
+    expect(snap).toMatchSnapshot();
+  });
+});
+
+describe('<Row />', () => {
+  it('renders  <Row /> components', () => {
+    const snap = shallow(<Row className data={{ index: "Index", phone: 'Phone Numbers' }} onClick={() => {}} />);
+    expect(snap).toMatchSnapshot();
+  });
 });
