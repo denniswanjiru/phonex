@@ -1,0 +1,10 @@
+version: 2
+jobs:
+  build:
+    docker:
+      - image: circleci/node:11.12.0
+
+    steps:
+      - checkout
+      - run: yarn
+      - run: yarn test
