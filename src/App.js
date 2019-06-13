@@ -15,6 +15,7 @@ export default class App extends Component {
     const numbers = JSON.parse(localStorage.getItem('numbers'));
     /* istanbul ignore next */
     if(numbers && numbers.length > 0) {
+    /* istanbul ignore next */
       this.setState({ numbers })
     }
   }
@@ -62,7 +63,9 @@ export default class App extends Component {
                   type="number"
                   placeholder="Amount to be generated"
                   onChange={this.handleChange}
-                  className={error ? 'error-input' : ''}
+                  className={
+                   /* istanbul ignore next */
+                    error ? 'error-input' : ''}
                 />
                 {
                   /* istanbul ignore next */

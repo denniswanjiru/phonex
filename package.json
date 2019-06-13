@@ -36,7 +36,8 @@
     "collectCoverageFrom": [
       "src/**/*.{js,jsx}",
       "!node_modules/",
-      "!src/index.js"
+      "!src/index.js",
+      "!src/utils/generateNumbers.js"
     ],
     "coverageReporters": [
       "json",
