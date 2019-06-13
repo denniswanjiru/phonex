@@ -14,7 +14,7 @@
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
-    "test": "react-scripts test --coverage",
+    "test": "react-scripts test",
     "eject": "react-scripts eject"
   },
   "eslintConfig": {
@@ -36,8 +36,7 @@
     "collectCoverageFrom": [
       "src/**/*.{js,jsx}",
       "!node_modules/",
-      "!src/index.js",
-      "!src/App.js"
+      "!src/index.js"
     ],
     "coverageReporters": [
       "json",
