@@ -7,4 +7,4 @@ jobs:
     steps:
       - checkout
       - run: yarn
-      - run: CI=true yarn test ./src
+      - run: CI=true yarn test --coverageReporters=text-lcov | coveralls
