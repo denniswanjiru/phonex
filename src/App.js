@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import './App.css';
 import Row from './Row';
+import phoneNumberGenerator from './utils/generateNumbers';
 
 export default class App extends Component {
   state = {
@@ -13,29 +14,16 @@ export default class App extends Component {
   componentDidMount() {
     const numbers = JSON.parse(localStorage.getItem('numbers'));
     if(numbers && numbers.length > 0) {
+    /* istanbul ignore next */
       this.setState({ numbers })
     }
   }
 
-
+  /* istanbul ignore next */
   generateNumbers = (e) => {
     e.preventDefault()
     const { amount } = this.state;
-    const numbers = [];
-
-    if(amount > 0 && amount < 10001) {
-      for(let i = 0; i < amount; i++) {
-        const rand = Math.ceil(Math.random() * 100000000) + '';
-        if (rand.length < 8) {
-          numbers.push('07' + rand + Math.floor(Math.random() * 10));
-        } else if (rand.length > 8) {
-          numbers.push('07' + rand.slice(0, -1));
-        } else {
-          numbers.push('07' + rand)
-        }
-      }
-    }
-
+    const numbers = phoneNumberGenerator(amount);
     this.setState({ numbers });
     localStorage.setItem('numbers', JSON.stringify(numbers));
   }
@@ -44,6 +32,7 @@ export default class App extends Component {
     this.setState({ amount: e.target.value });
   }
 
+  /* istanbul ignore next */
   handleSort = e => {
     e.preventDefault();
     const { asc, numbers } = this.state;
@@ -60,7 +49,6 @@ export default class App extends Component {
   render() {
     const { numbers, error, amount } = this.state;
     const disable = amount > 10000 || amount < 1;
-    console.log(amount, disable)
 
     return (
       <div className="page">
@@ -70,6 +58,7 @@ export default class App extends Component {
             <form>
               <div className="form-input">
                 <input
+                name="phone"
                 type="number"
                 placeholder="Amount to be generated"
                 onChange={this.handleChange}
@@ -84,8 +73,11 @@ export default class App extends Component {
           <p>Random Phone Number Generator App</p>
         </div>
         <div className="card">
-          <Row className data={{ index: "Index", phone: 'Phone Numbers' }} onClick={this.handleSort}/>
-          {numbers && numbers.map((phone, idx) => <Row key={idx} data={{ index: idx + 1, phone }} />)}
+          <Row className data={{ index: "Index", phone: 'Phone Numbers' }} onClick={this.handleSort} />
+          {numbers && numbers.map((phone, idx) => {
+            /* istanbul ignore next */
+            return <Row key={idx} data={{ index: idx + 1, phone }} />
+          })}
           {numbers.length < 1 && <div className="centered">You haven't generated any phone numbers yet</div>}
         </div>
       </div>
